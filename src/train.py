@@ -6,12 +6,15 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support
+
 
 DATA_DIR = "data/raw"
 features = ['gridposition', 'qualiposition', 'grid_vs_qualipos',
             'teamname', 'status_dnf', 'best_quali_time', 'q1', 'q2', 'q3',
             'airtemp', 'tracktemp', 'humidity', 'pressure', 'windspeed']
 essential = ['gridposition', 'qualiposition', 'teamname', 'position']
+seed = 3
 
 # =============================================================================
 # DecisionTree Class
@@ -110,6 +113,7 @@ class RandomForest:
         self.trees = []
         for _ in range(self.n_estimators):
             # Generate bootstrap sample indices.
+            np.random.seed(seed)
             idxs = np.random.choice(len(X), len(X), replace=True)
             tree = DecisionTree(max_depth=self.max_depth, min_samples_split=self.min_samples_split)
             tree.fit(X[idxs], y[idxs])
