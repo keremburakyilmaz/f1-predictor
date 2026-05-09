@@ -1,0 +1,39 @@
+data:
+  years: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+  train_cutoff: 2023
+  validation_years: [2024, 2025]
+  test_year: 2026
+
+regulation_eras:
+  hybrid_v1:
+    start: 2014
+    end: 2021
+  ground_effect:
+    start: 2022
+    end: 2025
+  active_aero:
+    start: 2026
+    end: 2030
+
+sample_weights:
+  2018: 1.0
+  2019: 1.0
+  2020: 1.0
+  2021: 1.0
+  2022: 1.5
+  2023: 2.0
+  2024: 3.0
+  2025: 4.0
+  2026: 5.0
+
+elo:
+  k_factor_base: 32
+  k_factor_sprint_multiplier: 0.5
+  k_factor_title_decider_multiplier: 1.5
+  initial_rating: 1500
+
+model:
+  random_state: 42
+  n_estimators: 500
+  learning_rate: 0.03
+  max_depth: 6
